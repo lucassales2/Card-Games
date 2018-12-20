@@ -1,5 +1,6 @@
 package dk.nodes.arch.domain.interactor.sample
 
+import dk.nodes.arch.domain.interactor.Result
 import dk.nodes.arch.util.AppCoroutineDispatchers
 import kotlinx.coroutines.CoroutineDispatcher
 

@@ -5,6 +5,7 @@ import dk.nodes.arch.util.AppCoroutineDispatchers
 import dk.nodes.template.domain.models.Post
 import dk.nodes.template.domain.repositories.PostRepository
 import kotlinx.coroutines.CoroutineDispatcher
+import dk.nodes.arch.domain.interactor.Result
 import javax.inject.Inject
 
 class GetPostsInteractorImpl @Inject constructor(
@@ -19,7 +20,7 @@ class GetPostsInteractorImpl @Inject constructor(
     ) {
         safeSuspendCall(
             call = { postRepository.getPosts(true) },
-            errorMessage = "Error Getting posts",
+            errorMessage = "Failure Getting posts",
             onResult = onResult
         )
     }

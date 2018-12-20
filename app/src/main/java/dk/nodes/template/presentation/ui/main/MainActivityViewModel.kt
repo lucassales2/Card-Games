@@ -2,6 +2,7 @@ package dk.nodes.template.presentation.ui.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import dk.nodes.arch.domain.interactor.Result
 import dk.nodes.arch.domain.interactor.launchInteractor
 import dk.nodes.template.domain.interactors.GetPostsInteractor
 import dk.nodes.template.domain.models.Post
@@ -21,9 +22,9 @@ class MainActivityViewModel @Inject constructor(
 
     init {
         scope.launchInteractor(getPostsInteractor, GetPostsInteractor.Input(0)) {
-            when {
-                it.isSuccess -> _postsLiveData.postValue(it.getOrNull())
-                it.isFailure -> _errorLiveData.postValue(Event(it.toString()))
+            when(it) {
+                is Result.Success -> _postsLiveData.postValue(it.data)
+                is Result.Failure -> _errorLiveData.postValue(Event(it.toString()))
             }
         }
     }
