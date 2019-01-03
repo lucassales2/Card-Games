@@ -22,7 +22,7 @@ class MainActivityViewModel @Inject constructor(
 
     init {
         scope.launchInteractor(getPostsInteractor, GetPostsInteractor.Input(0)) {
-            when(it) {
+            when (it) {
                 is Result.Success -> _postsLiveData.postValue(it.data)
                 is Result.Failure -> _errorLiveData.postValue(Event(it.toString()))
             }
