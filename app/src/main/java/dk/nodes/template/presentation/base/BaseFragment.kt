@@ -10,7 +10,6 @@ abstract class BaseFragment : DaggerFragment() {
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
 
     protected inline fun <reified VM : ViewModel> bindViewModel(): VM {
-        return ViewModelProviders.of(this, viewModelFactory)
-            .get(VM::class.java)
+        return ViewModelProviders.of(this, viewModelFactory)[VM::class.java]
     }
 }

@@ -15,13 +15,13 @@ import okio.BufferedSource
 
 class StorePostRepository(val api: Api, val gson: Gson, val context: Context) : PostRepository {
 
-    val postStore: Store<List<Post>, Int> by lazy {
+    private val postStore: Store<List<Post>, Int> by lazy {
         StoreBuilder.parsedWithKey<Int, BufferedSource, List<Post>>()
             .fetcher { key -> api.getPostsBuffered() }
             .persister(
                 FileSystemPersister.create(
-                    FileSystemFactory.create(context.filesDir),
-                    { key -> "Post$key" })
+                    FileSystemFactory.create(context.filesDir)
+                ) { key -> "Post$key" }
             )
             .parser(
                 GsonParserFactory.createSourceParser<List<Post>>(
@@ -32,7 +32,7 @@ class StorePostRepository(val api: Api, val gson: Gson, val context: Context) : 
             .open()
     }
 
-    override fun getPosts(cached: Boolean): List<Post> {
+    override suspend fun getPosts(cached: Boolean): List<Post> {
         try {
             return if (cached) postStore.get(0).blockingGet() else postStore.fetch(0).blockingGet()
         } catch (e: Exception) {
