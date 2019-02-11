@@ -5,7 +5,7 @@ import io.reactivex.Flowable
 import io.reactivex.disposables.Disposable
 import io.reactivex.subjects.BehaviorSubject
 
-abstract class SubjectInteractor<P : Any, EP, T> : Interactor<EP> {
+abstract class SubjectInteractor<P : Any, EP, T>  {
     private var disposable: Disposable? = null
     private val subject: BehaviorSubject<T> = BehaviorSubject.create()
 
@@ -19,7 +19,7 @@ abstract class SubjectInteractor<P : Any, EP, T> : Interactor<EP> {
         setSource(createObservable(params))
     }
 
-    final override suspend fun invoke(executeParams: EP) {
+    suspend fun invoke(executeParams: EP) {
         _loading.onNext(true)
         execute(params, executeParams)
         _loading.onNext(false)

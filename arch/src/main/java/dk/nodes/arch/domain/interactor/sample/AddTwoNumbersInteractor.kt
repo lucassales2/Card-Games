@@ -1,6 +1,6 @@
 package dk.nodes.arch.domain.interactor.sample
 
-import dk.nodes.arch.domain.interactor.ResultInteractor
+import dk.nodes.arch.domain.interactor.Interactor
 
 /**
  * Created by bison on 10/10/17.
@@ -11,7 +11,7 @@ import dk.nodes.arch.domain.interactor.ResultInteractor
  * Interactors always run in the background and usually publish their results to the mainthread
  * (much like an asynctask)
  */
-interface AddTwoNumbersInteractor : ResultInteractor<AddTwoNumbersInteractor.Input, Int> {
+interface AddTwoNumbersInteractor : Interactor<AddTwoNumbersInteractor.Input> {
     /*
         This contain whatever inputs the interactor needs to complete its job, it is set before a call to run()
         by the client (a presenter most likely)
