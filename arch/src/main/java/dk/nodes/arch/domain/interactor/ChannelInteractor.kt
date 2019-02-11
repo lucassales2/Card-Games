@@ -1,23 +1,9 @@
 package dk.nodes.arch.domain.interactor
 
-import dk.nodes.arch.extensions.toFlowable
-import io.reactivex.Flowable
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.rx2.asObservable
+import kotlinx.coroutines.channels.ReceiveChannel
 
-abstract class ChannelInteractor<P, T : Any> :
-    Interactor<P> {
-    private val channel = Channel<T>()
+interface ChannelInteractor<R: Any> {
 
-    final override suspend fun invoke(executeParams: P) {
-        channel.offer(execute(executeParams))
-    }
+    suspend fun receiveChannel(): ReceiveChannel<R>
 
-    fun observe(): Flowable<T> = channel.asObservable(dispatcher).toFlowable()
-
-    protected abstract suspend fun execute(executeParams: P): T
-
-    fun clear() {
-        channel.close()
-    }
 }
