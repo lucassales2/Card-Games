@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.get
 import dagger.android.support.DaggerAppCompatActivity
 import dk.nodes.nstack.kotlin.inflater.NStackBaseContext
 import javax.inject.Inject
@@ -16,7 +17,6 @@ abstract class BaseActivity : DaggerAppCompatActivity() {
         super.attachBaseContext(NStackBaseContext(newBase))
     }
 
-    protected inline fun <reified VM : ViewModel> bindViewModel(): VM {
-        return ViewModelProviders.of(this, viewModelFactory)[VM::class.java]
-    }
+    protected inline fun <reified VM : ViewModel> bindViewModel(): VM =
+        ViewModelProviders.of(this, viewModelFactory).get()
 }

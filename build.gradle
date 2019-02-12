@@ -11,7 +11,7 @@ buildscript {
             'rx'            : '2.2.3',
             'retrofit'      : '2.5.0',
             'nstack'        : '1.0.4',
-            'lifecycle'     : '2.1.0-alpha01'
+            'lifecycle'     : '2.1.0-alpha02'
     ]
 
     repositories {
