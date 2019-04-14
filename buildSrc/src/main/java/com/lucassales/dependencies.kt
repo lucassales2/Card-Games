@@ -1,7 +1,14 @@
-package dk.template.buildsrc
+package com.lucassales
 
 object Versions {
-    const val ktlint = "0.30.0"
+    const val ktlint = "0.31.0"
+}
+
+object Modules {
+    const val app = ":app"
+    const val arch = ":arch"
+    const val core = ":core"
+    const val solitaire = ":solitaire"
 }
 
 object Libs {

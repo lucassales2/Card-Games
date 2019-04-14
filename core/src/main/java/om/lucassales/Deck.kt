@@ -1,6 +1,6 @@
 package om.lucassales
 
-class Deck(private val rules: Rules) {
+data class Deck(val rules: Rules) {
 
     private val cards = Array(rules.validFigures.size * rules.validSuits.size) {
         val suit = rules.validSuits[it / rules.validFigures.size]
@@ -11,13 +11,27 @@ class Deck(private val rules: Rules) {
             rules.cardValue(figure to suit)
         )
     }
-    private val cardsInDeck = cards.toMutableList().apply { shuffle() }
+    var cardsInDeck = cards.toMutableList().apply { shuffle() }
 
     fun reset() {
         cardsInDeck.clear()
-        cardsInDeck += cards
+        cardsInDeck.addAll(cards)
         cardsInDeck.shuffle()
     }
 
     fun drawCard() = cardsInDeck.removeAt(0)
+
+    private fun bodyString(): String {
+        return cards.toList().onEach{
+            it.faceUp = true
+        }.joinToString { it.toString() }
+    }
+
+    override fun toString(): String {
+        return bodyString()
+    }
+
+    fun printDebug() {
+        cardsInDeck.forEach(::print)
+    }
 }

@@ -3,6 +3,7 @@ import com.lucassales.*
 apply plugin: 'kotlin'
 
 dependencies {
+    compile project(Modules.core)
     compile Libs.Kotlin.stdlib
 
     compile Libs.Coroutines.core
