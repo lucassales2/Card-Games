@@ -1,0 +1,16 @@
+import com.lucassales.*
+
+apply plugin: 'kotlin'
+
+dependencies {
+    compile project(Modules.core)
+    compile Libs.Kotlin.stdlib
+
+    compile Libs.Coroutines.core
+
+    compile Libs.Dagger.dagger
+
+    compile Libs.Retrofit.retrofit
+    compile Libs.OkHttp.loggingInterceptor
+    testCompile Libs.Test.junit
+}

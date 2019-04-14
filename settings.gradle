@@ -1,1 +1,6 @@
-include ':app', ':arch'
+import com.lucassales.*
+
+include Modules.app 
+include Modules.arch 
+include Modules.core 
+include Modules.solitaire 
