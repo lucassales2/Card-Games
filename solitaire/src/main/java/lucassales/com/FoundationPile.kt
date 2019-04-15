@@ -4,19 +4,20 @@ import om.lucassales.Card
 import om.lucassales.Suit
 
 class FoundationPile(val suit: Suit) {
-    val cards: MutableList<Card> = mutableListOf()
+    private val _cards = mutableListOf<Card>()
+    val cards: List<Card> = _cards
 
     fun reset() {
-        cards.clear()
+        _cards.clear()
     }
 
     fun removeCard(card: Card) {
-        cards.remove(card)
+        _cards.remove(card)
     }
 
     fun addCard(card: Card): Boolean {
         if (card.suit == suit && card.value == (cards.lastOrNull()?.value?.plus(1) ?: 0)) {
-            cards.add(card)
+            _cards.add(card)
             return true
         }
 

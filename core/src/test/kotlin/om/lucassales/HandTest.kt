@@ -16,7 +16,7 @@ class HandTest {
         for (i in 0 until rules.playerCount) {
             val hand = Hand(deck, rules)
             assert(hand.cards.size == 3)
-            println("Hand number ${(i+1)}")
+            println("Hand number ${(i + 1)}")
             hand.logHand()
             var strenght = 0
             hand.cards.map { rules.cardValue(it.asPair()) }.forEach {
@@ -26,12 +26,9 @@ class HandTest {
             println("------------")
             hands += hand
         }
-
-
     }
 
     @Test
     fun pickCardAt() {
-
     }
 }

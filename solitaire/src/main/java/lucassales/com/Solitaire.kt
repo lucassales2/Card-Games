@@ -48,7 +48,6 @@ object Solitaire {
                 wastePile.remove(card)
                 return true
             }
-
         }
         return false
     }

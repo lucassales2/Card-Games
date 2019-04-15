@@ -1,14 +1,21 @@
+import com.lucassales.*
+
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply from: 'maven-push.gradle'
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion "28.0.3"
+    compileSdkVersion sdks.compileSdkVersion
+    buildToolsVersion sdks.buildToolsVersion
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
     defaultConfig {
-        minSdkVersion 19
-        targetSdkVersion 28
+        minSdkVersion sdks.minSdkVersion
+        targetSdkVersion sdks.targetSdkVersion
         versionCode 4
         versionName "1.1.9"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -32,11 +39,10 @@ dependencies {
     })
 
     implementation 'javax.inject:javax.inject:1'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlin}"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutines}"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutines}"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-rx2:${versions.coroutines}"
-    implementation "io.reactivex.rxjava2:rxjava:${versions.rx}"
+    implementation Libs.Kotlin.stdlib
+    implementation Libs.Coroutines.core
+    implementation Libs.Coroutines.android
+    implementation Libs.RxJava.rxJava
     implementation "androidx.paging:paging-common:${versions.paging}"
     implementation "com.squareup.retrofit2:retrofit:${versions.retrofit}"
 

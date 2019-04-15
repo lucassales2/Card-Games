@@ -12,12 +12,11 @@ object SolitaireRule : Rules {
     override val playerCount = 1
 
     override fun cardValue(pair: Pair<Figure, Suit>): Int {
-       return pair.first.value - 1
+        return pair.first.value - 1
     }
 
 //    private val Suit.value
 //        get() = weight * 100
-
 
     private val Figure.value: Int
         get() = when (this) {
