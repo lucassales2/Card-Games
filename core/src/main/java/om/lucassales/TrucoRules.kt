@@ -103,7 +103,3 @@ private fun Figure.isPreviousFrom(figure: Figure): Boolean {
         else -> return false
     }
 }
-
-
-
-

@@ -70,9 +70,11 @@ object Libs {
     }
 
     object Dagger {
-        private const val version = "2.21"
-        const val dagger = "com.google.dagger:dagger:$version"
-        const val compiler = "com.google.dagger:dagger-compiler:$version"
+        private const val version = "2.22.1"
+        val dagger = "com.google.dagger:dagger:$version"
+        val androidSupport = "com.google.dagger:dagger-android-support:$version"
+        val compiler = "com.google.dagger:dagger-compiler:$version"
+        val androidProcessor = "com.google.dagger:dagger-android-processor:$version"
     }
 
     object Glide {
@@ -92,6 +94,13 @@ object Libs {
         private const val version = "3.12.1"
         const val okhttp = "com.squareup.okhttp3:okhttp:$version"
         const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:$version"
+    }
+
+    object Epoxy {
+        private const val version = "3.4.0"
+        val epoxy = "com.airbnb.android:epoxy:$version"
+        val dataBinding = "com.airbnb.android:epoxy-databinding:$version"
+        val processor = "com.airbnb.android:epoxy-processor:$version"
     }
 
     object Test {
