@@ -22,7 +22,7 @@ data class Deck(val rules: Rules) {
     fun drawCard() = cardsInDeck.removeAt(0)
 
     private fun bodyString(): String {
-        return cards.toList().onEach{
+        return cards.toList().onEach {
             it.faceUp = true
         }.joinToString { it.toString() }
     }

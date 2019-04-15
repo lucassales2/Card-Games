@@ -1,7 +1,5 @@
 package lucassales.com
 
-import om.lucassales.Card
-import om.lucassales.Deck
 import om.lucassales.printDebug
 import org.junit.Test
 
@@ -15,13 +13,15 @@ class GameTest {
             numGames++
             Solitaire.reset()
             assert((Solitaire.deck.cardsInDeck.size + Solitaire.foundationPiles.map { it.cards.size }.sum() + Solitaire.tableauPiles.map { it.cards.size }.sum())
-                    == 52)
+                == 52
+            )
             for (j in 1..1000) {
                 Solitaire.tapDeck()
-                while (Solitaire.tapWaste());
-                Solitaire.tableauPiles.forEachIndexed { index, tableauPile ->
-                    while (Solitaire.tapTableau(index, tableauPile.cards.lastIndex));
-                }
+                while (Solitaire.tapWaste())
+                    Solitaire.tableauPiles.forEachIndexed { index, tableauPile ->
+                        while (Solitaire.tapTableau(index, tableauPile.cards.lastIndex)) {
+                        }
+                    }
             }
 
             if (Solitaire.isComplete()) {
@@ -37,7 +37,6 @@ class GameTest {
                 Solitaire.deck.cardsInDeck.printDebug()
                 println("Waste pile")
                 Solitaire.wastePile.printDebug()
-
 
                 Solitaire.tableauPiles.forEach {
                     println("Tableau: ")
@@ -57,12 +56,8 @@ class GameTest {
                 println(Solitaire)
                 break
             }
-
         }
         println("Game number $numGames")
         assert(numGames < maxGames)
-
     }
-
-
 }

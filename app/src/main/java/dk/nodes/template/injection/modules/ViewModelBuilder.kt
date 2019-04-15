@@ -5,10 +5,12 @@ import dagger.Binds
 import dagger.Module
 import dk.nodes.template.injection.DaggerViewModelFactory
 import dk.nodes.template.presentation.ui.main.MainActivityBuilder
+import dk.nodes.template.presentation.ui.solitaire.SolitaireActivityBuilder
 
 @Module(
     includes = [
-        MainActivityBuilder::class
+        MainActivityBuilder::class,
+        SolitaireActivityBuilder::class
     ]
 )
 internal abstract class ViewModelBuilder {

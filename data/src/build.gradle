@@ -1,0 +1,8 @@
+import com.lucassales.*
+
+apply plugin 'kotlin'
+
+dependencies {
+    Libs.Kotlin.stdlib
+//    Libs.Room.room
+}
