@@ -7,42 +7,43 @@ class Truco @Inject constructor(
     val deck: Deck
 ) {
 
-    val players = mutableListOf<Player>()
-    val cardsOnPile = mutableListOf<PlayerCard>()
+    private val _players = mutableListOf<Player>()
+    val players : List<Player> = _players
+    private val cardsOnPile = mutableListOf<PlayerCard>()
+
+    private val rounds = mutableListOf<Round>()
 
     private val playerNames = listOf("Lucas", "Gustavo", "Ricardo", "Tiago")
+    val teamA = listOf(playerNames[0], playerNames[2])
+    val teamB = listOf(playerNames[1], playerNames[3])
 
-    fun newRound() {
+    fun newMatch() {
+        rounds.clear()
+    }
+
+    fun newRound(): Round {
         deck.reset()
         rules.resetWithDeck(deck)
-        players.clear()
+        _players.clear()
         for (i in 0 until rules.playerCount) {
-            players += Player(Hand(deck, rules), playerNames[i])
+            _players += Player(Hand(deck, rules), playerNames[i])
         }
+        return Round(rules).also { rounds += it }
     }
 
-    fun play() {
+    fun newTurn(round: Round): Turn {
+        val list = mutableListOf<PlayerCard>()
         players.forEach { player ->
-            cardsOnPile += PlayerCard(player, player.hand.popCardAt(0))
+            list += PlayerCard(player, player.hand.popCardAt(0).copy(faceUp = true))
         }
-    }
-
-    fun winner(): String {
-        var winner = ""
-        var strongest = 0
-        cardsOnPile.forEach {
-            if (it.card.value > strongest) {
-                strongest = it.card.value
-                winner = it.player.name
-            }
-        }
-        return winner
+        return Turn(list).also { round.turns += it }
     }
 
     fun logPile() {
         println("Pile:")
         println("*********")
         cardsOnPile.forEach {
+            it.card.faceUp = true
             println("Player ${it.player.name}")
             println(it.card.logString)
             println("--------")

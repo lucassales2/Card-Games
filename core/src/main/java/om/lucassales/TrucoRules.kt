@@ -76,7 +76,7 @@ class TrucoRules @Inject constructor() : Rules {
     }
 
     fun resetWithDeck(deck: Deck) {
-        turnCard = deck.drawCard()
+        turnCard = deck.drawCard().copy(faceUp = true)
     }
 
     fun logTurnCard() {

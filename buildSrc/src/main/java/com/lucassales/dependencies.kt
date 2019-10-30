@@ -12,7 +12,7 @@ object Modules {
 }
 
 object Libs {
-    const val androidGradlePlugin = "com.android.tools.build:gradle:3.4.0-rc01"
+    const val androidGradlePlugin = "com.android.tools.build:gradle:3.5.1"
 
     const val timber = "com.jakewharton.timber:timber:4.7.1"
     const val junit = "junit:junit:4.12"

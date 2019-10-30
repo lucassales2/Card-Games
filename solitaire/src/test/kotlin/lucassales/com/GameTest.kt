@@ -7,11 +7,12 @@ class GameTest {
     @Test
     fun kingInFirstFoundationPile() {
         var numGames = 0
-        val maxGames = 10000
+        val maxGames = 100000
 
         for (i in 1..maxGames) {
             numGames++
             Solitaire.reset()
+
             assert((Solitaire.deck.cardsInDeck.size + Solitaire.foundationPiles.map { it.cards.size }.sum() + Solitaire.tableauPiles.map { it.cards.size }.sum())
                 == 52
             )
@@ -46,9 +47,11 @@ class GameTest {
                 Solitaire.tableauPiles.forEach {
                     val value = it.cards.isEmpty()
                     if (!value) {
-                        Solitaire.tapTableau(it)
+                        while (Solitaire.tapTableau(it)) {
+
+                        }
                     }
-                    assert(value)
+                    assert(it.cards.isEmpty())
                 }
 
                 assert(Solitaire.wastePile.isEmpty())

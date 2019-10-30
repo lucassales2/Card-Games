@@ -1,6 +1,6 @@
 package om.lucassales
 
-data class Card(val figure: Figure, val suit: Suit, var value: Int, var faceUp: Boolean = false) {
+data class Card(val figure: Figure, val suit: Suit, var value: Int, var faceUp: Boolean = true) {
     fun asPair() = figure to suit
 
     val logString: String
